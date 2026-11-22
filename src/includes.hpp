@@ -35,7 +35,7 @@ const std::string buttonIDs[6] = {
 #define STATIC_CREATE(class, width, height) \
     static class* create() { \
         class* ret = new class(); \
-        if (ret->initAnchored(width, height, Utils::getTexture().c_str())) { \
+        if (ret->init(width, height, Utils::getTexture().c_str())) { \
             ret->autorelease(); \
             return ret; \
         } \
@@ -79,7 +79,7 @@ public:
     static PauseLayer* getPauseLayer();
 
     Mod* mod = Mod::get();
-    geode::Popup<>* layer = nullptr;
+    geode::Popup* layer = nullptr;
 
     Macro macro;
     Renderer renderer;
@@ -154,7 +154,7 @@ public:
     int frameOffset = 0;
     int previousFrame = 0;
 
-    size_t currentAction = 0;
+size_t currentAction = 0;
     size_t currentFrameFix = 0;
     int frameFixesLimit = 240;
     bool frameFixes = false;
